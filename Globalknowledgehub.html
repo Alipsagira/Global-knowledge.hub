@@ -1,0 +1,2302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Knowledge Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+*📜 style.css (Basic Styling)*
+```css
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+}
+
+.search-box {
+    margin: 30px;
+}
+
+select, button {
+    padding: 10px;
+    margin: 10px;
+    font-size: 16px;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+*📜 script.js (Search Functionality)*
+```js
+function searchField() {
+    let field = document.getElementById("fieldSelect").value;
+    let outputText = "";
+
+    switch (field) {
+        case "student":
+            outputText = "As a student, focus on learning coding, problem-solving, and networking.";
+            break;
+        case "business":
+            outputText = "For business success, build strong branding, understand marketing, and manage finances wisely.";
+            break;
+        case "politician":
+            outputText = "Politicians must develop leadership skills, stay informed, and engage with the public effectively.";
+            break;
+        case "civilServant":
+            outputText = "Civil servants should be efficient, ethical, and dedicated to public service improvements.";
+            break;
+        default:
+            outputText = "Please select a field.";
+}
+
+    document.getElementById("output").innerText = outputText;
+}
+
+
+*📜 Updated style.css (Modern UI & Smooth Transitions)*
+```css
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+}
+
+.search-box {
+    margin: 30px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px gray;
+}
+
+input {
+    padding: 10px;
+    width: 80%;
+    margin: 10px;
+}
+
+button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+#output {
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 0px 10px gray;
+    border-radius: 10px;
+    display: none;
+}
+```
+
+*📜 Updated script.js (Enhanced Search & Dynamic Content)*
+```js
+function searchField() {
+    let searchInput = document.getElementById("searchInput").value.toLowerCase();
+    let outputDiv = document.getElementById("output");
+    let content = "";
+
+    switch (searchInput) {
+        case "student":
+            content = `
+                <h3>Student Advice</h3>
+                <p>Focus on learning coding, networking, and continuous learning.</p>
+                <ul>
+                    <li>Join online coding platforms like Codecademy or FreeCodeCamp.</li>
+                    <li>Engage in tech communities on GitHub or LinkedIn.</li>
+                    <li>Start personal projects to build experience.</li>
+                </ul>
+            `;
+            break;
+        case "businessman":
+            content = `
+                <h3>Business Strategies</h3>
+                <p>Develop strong branding, understand marketing, and manage finances wisely.</p>
+                <ul>
+                    <li>Create a business plan and define your target audience.</li>
+                    <li>Use digital marketing tools to grow your brand.</li>
+                    <li>Network with professionals and mentors.</li>
+                </ul>
+            `;
+            break;
+        case "politician":
+            content = `
+                <h3>Political Leadership</h3>
+                <p>Stay informed, engage with the public, and develop leadership skills.</p>
+                <ul>
+                    <li>Follow global and national political trends.</li>
+                    <li>Engage in constructive debates and discussions.</li>
+                    <li>Build policies that support community development.</li>
+                </ul>
+            `;
+            break;
+        case "civil servant":
+            content = `
+        <h3>Civil Service Excellence</h3>
+                <p>Be efficient, ethical, and committed to public service improvements.</p>
+                <ul>
+                    <li>Understand government policies and compliance.</li>
+                    <li>Develop strong communication and leadership skills.</li>
+                    <li>Advocate for impactful public programs.</li>
+                </ul>
+            `;
+            break;
+        default:
+            content = `<h3>No results found.</h3><p>Try searching for another profession.</p>`;
+}
+
+    outputDiv.innerHTML = content;
+    outputDiv.style.display = "block";
+}
+
+
+*📜 Updated style.css (Better Styling & Form Design)*
+```css
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+}
+
+.auth-box {
+    margin: 20px auto;
+    padding: 20px;
+    width: 300px;
+    background-color: white;
+    box-shadow: 0px 0px 10px gray;
+    border-radius: 10px;
+}
+
+input {
+    padding: 10px;
+    width: 80%;
+    margin: 10px;
+}
+
+button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #555;
+}
+```
+*📜 Updated script.js (User Registration & Login System)*
+```js
+// User Database (For simplicity, stored in localStorage)
+let users = JSON.parse(localStorage.getItem("users")) || {};
+
+// Register User
+function registerUser() {
+    let newUsername = document.getElementById("newUsername").value;
+    let newPassword = document.getElementById("newPassword").value;
+
+    if (!newUsername ||!newPassword) {
+        document.getElementById("registerMessage").innerText = "Please enter a username and password.";
+        return;
+}
+
+    if (users[newUsername]) {
+        document.getElementById("registerMessage").innerText = "Username already exists.";
+        return;
+}
+
+    users[newUsername] = newPassword;
+    localStorage.setItem("users", JSON.stringify(users));
+    document.getElementById("registerMessage").innerText = "Registration successful! Please log in.";
+}
+
+// User Login
+function loginUser() {
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+
+    if (users[username] && users[username] === password) {
+        document.getElementById("loginMessage").innerText = "Welcome, " + username + "!";
+        document.getElementById("userGreeting").innerText = username;
+        document.getElementById("welcome").style.display = "block";
+} else {
+        document.getElementById("loginMessage").innerText = "Invalid username or password.";
+}
+}
+```
+*📜 Updated style.css (Profile Page Styling)*
+```css
+.profile-box {
+    margin: 30px auto;
+    padding: 20px;
+    width: 300px;
+    background-color: white;
+    box-shadow: 0px 0px 10px gray;
+    border-radius: 10px;
+}
+
+input, select {
+    padding: 10px;
+    width: 80%;
+    margin: 10px;
+}
+
+#personalizedAdvice {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0px 0px 10px gray;
+    border-radius: 10px;
+}
+```
+📜 Updated script.js (Save & Display Profile Preferences)*
+```js
+// Save Profile Preferences
+function saveProfile() {
+    let name = document.getElementById("profileName").value;
+    let career = document.getElementById("careerField").value;
+
+    if (!name) {
+        document.getElementById("profileMessage").innerText = "Please enter your name.";
+        return;
+}
+
+    localStorage.setItem("userName", name);
+    localStorage.setItem("careerField", career);
+    document.getElementById("profileMessage").innerText = "Profile updated successfully!";
+
+    displayCareerAdvice();
+}
+
+// Display Personalized Career Advice
+function displayCareerAdvice() {
+    let career = localStorage.getItem("careerField");
+    let adviceText = "";
+
+    switch (career) {
+        case "student":
+            adviceText = "As a student, focus on learning, networking, and gaining practical experience.";
+            break;
+        case "business":
+            adviceText = "Business success requires branding, strategic networking, and financial management.";
+            break;
+        case "politician":
+            adviceText = "Effective politicians engage with the public, develop policies, and lead with vision.";
+            break;
+        case "civilServant":
+            adviceText = "Civil servants contribute to public service efficiency and uphold ethical standards.";
+            break;
+        default:
+            adviceText = "Choose your profession to receive personalized guidance.";
+}
+
+    document.getElementById("adviceText").innerText = adviceText;
+    document.getElementById("personalizedAdvice").style.display = "block";
+}
+
+// Load Profile Automatically on Page Load
+window.onload = function() {
+    if (localStorage.getItem("userName")) {
+        document.getElementById("profileName").value = localStorage.getItem("userName");
+        document.getElementById("careerField").value = localStorage.getItem("careerField");
+displayCareerAdvice();
+    }
+};
+
+
+*📜 Updated style.css (Forum Page Styling)*
+```css
+.forum-box {
+    margin: 20px auto;
+    padding: 20px;
+    width: 400px;
+    background-color: white;
+    box-shadow: 0px 0px 10px gray;
+    border-radius: 10px;
+}
+
+textarea {
+    padding: 10px;
+    width: 100%;
+    height: 100px;
+    margin: 10px;
+}
+
+#forumPosts {
+    margin: 30px auto;
+    padding: 20px;
+    width: 80%;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px gray;
+    border-radius: 10px;
+}
+
+.post {
+    padding: 15px;
+    margin: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px gray;
+}
+```
+
+
+
+*📜 Updated script.js (Discussion Forum System)*
+```js
+// Post a Discussion
+function postDiscussion() {
+    let title = document.getElementById("postTitle").value;
+    let content = document.getElementById("postContent").value;
+
+    if (!title ||!content) {
+        document.getElementById("postMessage").innerText = "Please enter a title and content.";
+        return;
+}
+
+    let posts = JSON.parse(localStorage.getItem("forumPosts")) || [];
+    posts.push({ title, content});
+    localStorage.setItem("forumPosts", JSON.stringify(posts));
+
+    document.getElementById("postMessage").innerText = "Discussion posted!";
+    displayPosts();
+}
+
+// Display Discussions
+function displayPosts() {
+    let posts = JSON.parse(localStorage.getItem("forumPosts")) || [];
+    let postsList = document.getElementById("postsList");
+    postsList.innerHTML = "";
+
+    posts.forEach((post, index) => {
+        let postDiv = document.createElement("div");
+        postDiv.classList.add("post");
+        postDiv.innerHTML = `<h3>${post.title}</h3><p>${post.content}</p>`;
+        postsList.appendChild(postDiv);
+});
+}
+
+// Load Forum Posts Automatically
+window.onload = function() {
+    displayPosts();
+};
+```
+
+*📜 Updated style.css (Improved Comments & Thread Design)*
+```css
+.post {
+    padding: 15px;
+    margin: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px gray;
+}
+
+.comment-box {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0px 0px 5px lightgray;
+}
+
+textarea, button {
+    width: 90%;
+    padding: 10px;
+    margin: 5px;
+}
+```
+
+*📜 Updated script.js (Comment & Like System)*
+```js
+// Post a Discussion
+function postDiscussion() {
+    let title = document.getElementById("postTitle").value;
+    let content = document.getElementById("postContent").value;
+
+    if (!title ||!content) {
+        document.getElementById("postMessage").innerText = "Please enter a title and content.";
+        return;
+}
+
+    let posts = JSON.parse(localStorage.getItem("forumPosts")) || [];
+    posts.push({ title, content, comments: [], likes: 0});
+    localStorage.setItem("forumPosts", JSON.stringify(posts));
+
+    document.getElementById("postMessage").innerText = "Discussion posted!";
+    displayPosts();
+}
+
+// Display Posts with Comments
+function displayPosts() {
+    let posts = JSON.parse(localStorage.getItem("forumPosts")) || [];
+    let postsList = document.getElementById("postsList");
+    postsList.innerHTML = "";
+
+    posts.forEach((post, index) => {
+        let postDiv = document.createElement("div");
+        postDiv.classList.add("post");
+        postDiv.innerHTML = `<h3>${post.title}</h3><p>${post.content}</p>
+                             <p>👍 ${post.likes} Likes <button onclick="likePost(${index})">Like</button></p>
+                             <div class="comment-box">
+                                <textarea id="commentInput${index}" placeholder="Write a comment..."></textarea>
+                                <button onclick="addComment(${index})">Comment</button>
+                                <div id="commentsList${index}"></div>
+                             </div>`;
+        postsList.appendChild(postDiv);
+        displayComments(index);
+});
+}
+
+// Add Comment
+function addComment(postIndex) {
+    let commentText = document.getElementById(`commentInput${postIndex}`).value;
+    let posts = JSON.parse(localStorage.getItem("forumPosts")) || [];
+
+    if (!commentText) return;
+
+    posts[postIndex].comments.push(commentText);
+    localStorage.setItem("forumPosts", JSON.stringify(posts));
+    displayComments(postIndex);
+}
+
+// Display Comments
+function displayComments(postIndex) {
+    let posts = JSON.parse(localStorage.getItem("forumPosts")) || [];
+    let commentsList = document.getElementById(`commentsList${postIndex}`);
+    commentsList.innerHTML = "";  
+    posts[postIndex].comments.forEach(comment => {
+        let commentDiv = document.createElement("div");
+        commentDiv.classList.add("comment-box");
+        commentDiv.innerHTML = `<p>${comment}</p>`;
+        commentsList.appendChild(commentDiv);
+});
+}
+
+// Like Post
+function likePost(postIndex) {
+    let posts = JSON.parse(localStorage.getItem("forumPosts")) || [];
+    posts[postIndex].likes++;
+    localStorage.setItem("forumPosts", JSON.stringify(posts));
+    displayPosts();
+}
+
+// Load Posts Automatically on Page Load
+window.onload = function() {
+    displayPosts();
+};
+```
+*📜 Updated style.css (Reply UI Design)*
+```css
+.post {
+    padding: 15px;
+    margin: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px gray;
+}
+
+.comment-box {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0px 0px 5px lightgray;
+}
+
+.reply-box {
+    margin-left: 20px;
+    padding: 8px;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0px 0px 5px lightgray;
+}
+
+textarea, button {
+    width: 90%;
+    padding: 10px;
+    margin: 5px;
+}
+
+*📜 Updated script.js (Nested Reply System)*
+```js
+// Post a Discussion
+function postDiscussion() {
+    let title = document.getElementById("postTitle").value;
+    let content = document.getElementById("postContent").value;
+
+    if (!title ||!content) {
+        document.getElementById("postMessage").innerText = "Please enter a title and content.";
+        return;
+}
+
+    let posts = JSON.parse(localStorage.getItem("forumPosts")) || [];
+    posts.push({ title, content, comments: []});
+    localStorage.setItem("forumPosts", JSON.stringify(posts));
+
+    document.getElementById("postMessage").innerText = "Discussion posted!";
+    displayPosts();
+}
+
+// Display Posts with Comments
+function displayPosts() {
+    let posts = JSON.parse(localStorage.getItem("forumPosts")) || [];
+    let postsList = document.getElementById("postsList");
+    postsList.innerHTML = "";
+
+    posts.forEach((post, index) => {
+        let postDiv = document.createElement("div");
+        postDiv.classList.add("post");
+        postDiv.innerHTML = `<h3>${post.title}</h3><p>${post.content}</p>
+                             <div class="comment-box">
+                                <textarea id="commentInput${index}" placeholder="Write a comment..."></textarea>
+                                <button onclick="addComment(${index})">Comment</button>
+                                <div id="commentsList${index}"></div>
+                             </div>`;
+        postsList.appendChild(postDiv);
+        displayComments(index);
+});
+}
+
+// Add Comment
+function addComment(postIndex) {
+    let commentText = document.getElementById(`commentInput${postIndex}`).value;
+    let posts = JSON.parse(localStorage.getItem("forumPosts")) || [];
+
+    if (!commentText) return;
+
+    posts[postIndex].comments.push({ text: commentText, replies: []});
+    localStorage.setItem("forumPosts", JSON.stringify(posts));
+    displayComments(postIndex);
+}
+
+// Display Comments & Replies
+function displayComments(postIndex) {
+    let posts = JSON.parse(localStorage.getItem("forumPosts")) || [];
+    
+    let commentsList = document.getElementById(`commentsList${postIndex}`);
+    commentsList.innerHTML = "";
+
+    posts[postIndex].comments.forEach((comment, commentIndex) => {
+        let commentDiv = document.createElement("div");
+        commentDiv.classList.add("comment-box");
+        commentDiv.innerHTML = `<p>${comment.text}</p>
+                                <textarea id="replyInput${postIndex}-${commentIndex}" placeholder="Reply..."></textarea>
+                                <button onclick="addReply(${postIndex}, ${commentIndex})">Reply</button>
+                                <div id="replyList${postIndex}-${commentIndex}"></div>`;
+        commentsList.appendChild(commentDiv);
+        displayReplies(postIndex, commentIndex);
+});
+}
+
+// Add Reply to Comment
+function addReply(postIndex, commentIndex) {
+    let replyText = document.getElementById(`replyInput${postIndex}-${commentIndex}`).value;
+    let posts = JSON.parse(localStorage.getItem("forumPosts")) || [];
+
+    if (!replyText) return;
+
+    posts[postIndex].comments[commentIndex].replies.push(replyText);
+    localStorage.setItem("forumPosts", JSON.stringify(posts));
+    displayReplies(postIndex, commentIndex);
+}
+
+// Display Replies
+function displayReplies(postIndex, commentIndex) {
+    let posts = JSON.parse(localStorage.getItem("forumPosts")) || [];
+    let replyList = document.getElementById(`replyList${postIndex}-${commentIndex}`);
+    replyList.innerHTML = "";
+
+    posts[postIndex].comments[commentIndex].replies.forEach(reply => {
+        let replyDiv = document.createElement("div");
+        replyDiv.classList.add("reply-box");
+        replyDiv.innerHTML = `<p>${reply}</p>`;
+        replyList.appendChild(replyDiv);
+});
+}
+
+// Load Posts Automatically on Page Load
+window.onload = function() {
+    displayPosts();
+};
+
+*📜 Updated style.css (Better Visibility for Liked Posts)*
+```css
+.like-box {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.like-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.like-btn:hover {
+    background-color: #0056b3;
+}
+
+.like-count {
+    margin-left: 10px;
+    font-weight: bold;
+}
+```
+
+*📜 Updated style.css (Private Messaging UI)*
+```css
+.message-box, #inbox {
+    margin: 30px auto;
+    padding: 20px;
+    width: 400px;
+    background-color: white;
+    box-shadow: 0px 0px 10px gray;
+    border-radius: 10px;
+}
+
+textarea {
+    padding: 10px;
+    width: 100%;
+    height: 100px;
+    margin: 10px;
+}
+```
+
+---
+
+*📜 Updated script.js (Messaging System & Inbox)*
+```js
+// Send a Private Message
+function sendMessage() {
+    let recipient = document.getElementById("recipient").value;
+    let messageContent = document.getElementById("messageContent").value;
+
+    if (!recipient ||!messageContent) {
+        document.getElementById("messageStatus").innerText = "Please enter recipient and message.";
+        return;
+}
+
+    let messages = JSON.parse(localStorage.getItem("messages")) || [];
+    messages.push({ recipient, messageContent});
+    localStorage.setItem("messages", JSON.stringify(messages));
+
+    document.getElementById("messageStatus").innerText = "Message sent!";
+    displayInbox();
+}
+
+// Display Messages in Inbox
+function displayInbox() {
+    let currentUser = localStorage.getItem("userName") || "Guest";
+    let messages = JSON.parse(localStorage.getItem("messages")) || [];
+    let messagesList = document.getElementById("messagesList");
+    messagesList.innerHTML = "";
+
+    messages.forEach((msg) => {
+        if (msg.recipient === currentUser) {
+            let messageDiv = document.createElement("div");
+            messageDiv.classList.add("message-box");
+            messageDiv.innerHTML = `<p><strong>From:</strong> Anonymous</p><p>${msg.messageContent}</p>`;
+            messagesList.appendChild(messageDiv);
+}
+});
+}
+
+// Load Messages Automatically on Page Load
+window.onload = function() {
+    displayInbox();
+};
+```
+*📜 Updated style.css (Clean Dashboard Design)*
+```css
+.dashboard-box {
+    margin: 20px auto;
+    padding: 20px;
+    width: 400px;
+    background-color: white;
+    box-shadow: 0px 0px 10px gray;
+    border-radius: 10px;
+}
+
+input, select {
+    padding: 10px;
+    width: 90%;
+    margin: 10px;
+}
+
+p {
+    font-size: 16px;
+    margin: 10px;
+    font-weight: bold;
+}
+```
+
+*📜 Updated script.js (Tracking Posts, Likes & Messages)*
+```js
+// Save Profile Data
+function saveProfile() {
+    let name = document.getElementById("profileName").value;
+    let career = document.getElementById("careerField").value;
+
+    if (!name) {
+        document.getElementById("profileMessage").innerText = "Please enter your name.";
+        return;
+}
+
+    localStorage.setItem("userName", name);
+    localStorage.setItem("careerField", career);
+    document.getElementById("profileMessage").innerText = "Profile updated!";
+}
+
+// Load User Activity Stats
+function loadDashboard() {
+    let posts = JSON.parse(localStorage.getItem("forumPosts")) || [];
+    let messages = JSON.parse(localStorage.getItem("messages")) || [];
+    let likes = 0;
+
+    posts.forEach(post => {
+        likes += post.likes;
+});
+
+    document.getElementById("postCount").innerText = posts.length;
+    document.getElementById("likeCount").innerText = likes;
+    document.getElementById("messageCount").innerText = messages.length;
+}
+
+// Load Dashboard Automatically
+window.onload = function() {
+    loadDashboard();
+};
+```
+
+*📜 Updated script.js (Connecting to Firebase)*
+```js
+// Initialize Firebase
+const firebaseConfig = {
+    apiKey: "YOUR_FIREBASE_API_KEY",
+    authDomain: "your-app.firebaseapp.com",
+    databaseURL: "https://your-app-default-rtdb.firebaseio.com",
+    projectId: "your-app",
+    storageBucket: "your-app.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+};
+
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
+// Store User Profile in Firebase
+function saveProfile() {
+    let name = document.getElementById("profileName").value;
+    let career = document.getElementById("careerField").value;
+
+    if (!name) {
+        document.getElementById("profileMessage").innerText = "Please enter your name.";
+        return;
+}
+
+    let userId = localStorage.getItem("userId") || Date.now().toString();
+    localStorage.setItem("userId", userId);
+
+    database.ref("users/" + userId).set({ name, career});
+    document.getElementById("profileMessage").innerText = "Profile saved!";
+}
+
+// Store Discussions in Firebase
+function postDiscussion() {
+    let title = document.getElementById("postTitle").value;
+    let content = document.getElementById("postContent").value;
+
+    if (!title ||!content) {
+        document.getElementById("postMessage").innerText = "Please enter a title and content.";
+        return;
+}
+
+    let discussionId = Date.now().toString();
+    database.ref("discussions/" + discussionId).set({ title, content, likes: 0});
+
+    document.getElementById("postMessage").innerText = "Discussion posted!";
+}
+
+// Load Discussions from Firebase
+database.ref("discussions").on("value", (snapshot) => {
+    let discussions = snapshot.val();
+    let postsList = document.getElementById("postsList");
+    postsList.innerHTML = "";
+
+    for (let key in discussions) {
+        let post = discussions[key];
+        let postDiv = document.createElement("div");
+        postDiv.classList.add("post");
+        postDiv.innerHTML = `<h3>${post.title}</h3><p>${post.content}</p>`;
+        postsList.appendChild(postDiv);
+}
+});
+```
+
+
+*📜 Updated script.js (Firebase Authentication)*
+```js
+// Initialize Firebase
+const firebaseConfig = {
+    apiKey: "YOUR_FIREBASE_API_KEY",
+    authDomain: "your-app.firebaseapp.com",
+    databaseURL: "https://your-app-default-rtdb.firebaseio.com",
+    projectId: "your-app",
+    storageBucket: "your-app.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
+// User Registration
+function registerUser() {
+    let email = document.getElementById("registerEmail").value;
+    let password = document.getElementById("registerPassword").value;
+
+    auth.createUserWithEmailAndPassword(email, password)
+.then((userCredential) => {
+            document.getElementById("registerMessage").innerText = "Registration successful! Please log in.";
+})
+.catch((error) => {
+            document.getElementById("registerMessage").innerText = error.message;
+});
+}
+
+// User Login
+function loginUser() {
+    let email = document.getElementById("loginEmail").value;
+    let password = document.getElementById("loginPassword").value;
+
+    auth.signInWithEmailAndPassword(email, password)
+.then((userCredential) => {
+            document.getElementById("loginMessage").innerText = "Welcome, " + userCredential.user.email + "!";
+            localStorage.setItem("loggedInUser", userCredential.user.email);
+})
+.catch((error) => {
+            document.getElementById("loginMessage").innerText = error.message;
+});
+}
+
+// Logout Function
+function logoutUser() {
+    auth.signOut().then(() => {
+        localStorage.removeItem("loggedInUser");
+        document.getElementById("loginMessage").innerText = "You have logged out.";
+});
+}
+```
+
+*📜 Updated script.js (Firebase Cloud Messaging)*
+```js
+// Initialize Firebase Cloud Messaging
+const messaging = firebase.messaging();
+
+// Request Permission for Notifications
+function requestNotificationPermission() {
+    Notification.requestPermission().then((permission) => {
+        if (permission === "granted") {
+            console.log("Notification permission granted.");
+} else {
+            console.log("Notification permission denied.");
+}
+});
+}
+
+// Send Notification on New Message
+function sendNotification(recipient, messageText) {
+    database.ref("notifications/" + recipient).set({
+        message: messageText,
+        timestamp: Date.now()
+});
+}
+
+// Display Notifications in User Dashboard
+database.ref("notifications").on("value", (snapshot) => {
+    let notifications = snapshot.val();
+    if (notifications) {
+        let notifList = document.getElementById("notificationList");
+        notifList.innerHTML = "";
+
+        for (let key in notifications) {
+            let notifDiv = document.createElement("div");
+            notifDiv.classList.add("notification");
+            notifDiv.innerHTML = `<p>${notifications[key].message}</p>`;
+            notifList.appendChild(notifDiv);
+}
+}
+});
+```
+*📜 Updated style.css (Chatbot UI Design)*
+```css
+.chat-box {
+    margin: 30px auto;
+    padding: 20px;
+    width: 400px;
+    background-color: white;
+    box-shadow: 0px 0px 10px gray;
+    border-radius: 10px;
+}
+
+input, button {
+    width: 90%;
+    padding: 10px;
+    margin: 5px;
+}
+```
+*📜 Updated script.js (AI Chatbot Integration)*
+```js
+// Firebase Database Reference
+const database = firebase.database();
+
+// Send User Message to AI
+function sendMessage() {
+    let userMessage = document.getElementById("userMessage").value;
+
+    if (!userMessage) return;
+
+    document.getElementById("chatHistory").innerHTML += `<p><strong>You:</strong> ${userMessage}</p>`;
+
+    // Simulated AI Response (Replace with API call)
+    let aiResponse = getAIResponse(userMessage);
+    document.getElementById("chatHistory").innerHTML += `<p><strong>AI:</strong> ${aiResponse}</p>`;
+
+    // Store Chat in Firebase
+    database.ref("chatHistory").push({ userMessage, aiResponse});
+}
+
+// Simulated AI Response Function (Replace with API call)
+function getAIResponse(message) {
+    let responses = {
+        "student": "Focus on gaining practical skills and networking with professionals.",
+        "business": "Develop strong branding, marketing strategies, and financial management.",
+        "politician": "Engage with the public, develop policy strategies, and practice ethical leadership.",
+        "civil servant": "Improve efficiency, uphold ethical standards, and contribute to public service improvements."
+};
+
+    return responses[message.toLowerCase()] || "I'm here to assist! Ask me anything career-related.";
+}
+
+// Load Chat History from Firebase
+database.ref("chatHistory").on("value", (snapshot) => {
+    let chats = snapshot.val();
+    let chatHistoryDiv = document.getElementById("chatHistory");
+    chatHistoryDiv.innerHTML = "";
+
+    for (let key in chats) {
+        chatHistoryDiv.innerHTML += `<p><strong>You:</strong> ${chats[key].userMessage}</p>`;
+        chatHistoryDiv.innerHTML += `<p><strong>AI:</strong> ${chats[key].aiResponse}</p>`;
+}
+});
+```
+
+*📜 Updated script.js (Smart AI Responses with Memory)*
+```js
+// Firebase Database Reference for Chat History
+const database = firebase.database();
+
+// Enhanced AI Response System
+function getAIResponse(message, userProfile) {
+    let responses = {
+        "student": [
+            "Focus on building projects to showcase your skills.",
+            "Networking with professionals can unlock great opportunities.",
+            "Consider internships for hands-on experience."
+        ],
+        "business": [
+            "Branding and digital presence are essential for business growth.",
+            "Understanding financial management leads to long-term success.",
+            "A strong marketing strategy can boost customer engagement."
+        ],
+        "politician": [
+            "Connecting with people and building trust is key in leadership.",
+            "Stay informed about policy changes and community needs.",
+            "Strategic communication improves public engagement."
+        ],
+        "civil servant": [
+            "Efficiency and ethical standards drive impactful public service.",
+            "Continuous learning helps you adapt to policy reforms.",
+            "Engage in programs that create sustainable change."
+        ]
+};
+
+    let category = userProfile?.careerField?.toLowerCase();
+    let responseOptions = responses[category] || ["I’m here to assist you! Ask me anything about your career."];
+
+    return responseOptions[Math.floor(Math.random() * responseOptions.length)];
+}
+
+// Sending Messages to AI
+function sendMessage() {
+    let userMessage = document.getElementById("userMessage").value;
+    if (!userMessage) return;
+
+    let userProfile = JSON.parse(localStorage.getItem("userProfile")) || {};
+    let aiResponse = getAIResponse(userMessage, userProfile);
+
+    document.getElementById("chatHistory").innerHTML += `<p><strong>You:</strong> ${userMessage}</p>`;
+    document.getElementById("chatHistory").innerHTML += `<p><strong>AI:</strong> ${aiResponse}</p>`;
+
+    // Store Chat in Firebase
+    database.ref("chatHistory").push({ userMessage, aiResponse});
+}
+
+// Load Chat History from Firebase
+database.ref("chatHistory").on("value", (snapshot) => {
+    let chats = snapshot.val();
+    let chatHistoryDiv = document.getElementById("chatHistory");
+    chatHistoryDiv.innerHTML = "";
+
+    for (let key in chats) {
+        chatHistoryDiv.innerHTML += `<p><strong>You:</strong> ${chats[key].userMessage}</p>`;
+        chatHistoryDiv.innerHTML += `<p><strong>AI:</strong> ${chats[key].aiResponse}</p>`;
+}
+});
+```
+
+
+*📜 Updated script.js (Smart AI Responses with Memory)*
+```js
+// Firebase Database Reference for Chat History
+const database = firebase.database();
+
+// Enhanced AI Response System
+function getAIResponse(message, userProfile) {
+    let responses = {
+        "student": [
+            "Focus on building projects to showcase your skills.",
+            "Networking with professionals can unlock great opportunities.",
+            "Consider internships for hands-on experience."
+        ],
+        "business": [
+            "Branding and digital presence are essential for business growth.",
+            "Understanding financial management leads to long-term success.",
+            "A strong marketing strategy can boost customer engagement."
+        ],
+        "politician": [
+            "Connecting with people and building trust is key in leadership.",
+            "Stay informed about policy changes and community needs.",
+            "Strategic communication improves public engagement."
+        ],
+        "civil servant": [
+            "Efficiency and ethical standards drive impactful public service.",
+            "Continuous learning helps you adapt to policy reforms.",
+            "Engage in programs that create sustainable change."
+        ]
+};
+
+    let category = userProfile?.careerField?.toLowerCase();
+    let responseOptions = responses[category] || ["I’m here to assist you! Ask me anything about your career."];
+
+    return responseOptions[Math.floor(Math.random() * responseOptions.length)];
+}
+
+// Sending Messages to AI
+function sendMessage() {
+    let userMessage = document.getElementById("userMessage").value;
+    if (!userMessage) return;
+
+    let userProfile = JSON.parse(localStorage.getItem("userProfile")) || {};
+    let aiResponse = getAIResponse(userMessage, userProfile);
+
+    document.getElementById("chatHistory").innerHTML += `<p><strong>You:</strong> ${userMessage}</p>`;
+    document.getElementById("chatHistory").innerHTML += `<p><strong>AI:</strong> ${aiResponse}</p>`;
+
+    // Store Chat in Firebase
+    database.ref("chatHistory").push({ userMessage, aiResponse});
+}
+
+// Load Chat History from Firebase
+database.ref("chatHistory").on("value", (snapshot) => {
+    let chats = snapshot.val();
+    let chatHistoryDiv = document.getElementById("chatHistory");
+    chatHistoryDiv.innerHTML = "";
+
+    for (let key in chats) {
+        chatHistoryDiv.innerHTML += `<p><strong>You:</strong> ${chats[key].userMessage}</p>`;
+        chatHistoryDiv.innerHTML += `<p><strong>AI:</strong> ${chats[key].aiResponse}</p>`;
+}
+});
+```
+*📜 Updated style.css (Modern UI Improvements)*
+```css
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+
+header {
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    color: white;
+    padding: 25px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-box,.forum-box,.profile-box {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 0px 10px gray;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+button {
+    background-color: #2575fc;
+    color: white;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #6a11cb;
+}
+```
+*📜 Updated script.js (Performance Optimization)*
+```js
+function searchField() {
+    let searchInput = document.getElementById("searchInput").value.toLowerCase();
+    let outputDiv = document.getElementById("output");
+
+    outputDiv.innerHTML = `<p>Loading results...</p>`;  // Simulate faster response
+
+    setTimeout(() => {
+        let results = {
+            "student": "Focus on learning new technologies and networking.",
+            "businessman": "Develop a strong brand and strategic marketing.",
+            "politician": "Engage in leadership, policy-making, and community outreach.",
+            "civil servant": "Work efficiently and uphold ethical governance."
+};
+
+        outputDiv.innerHTML = `<p>${results[searchInput] || "Try searching for another profession."}</p>`;
+}, 500);
+}
+```
+
+*📜 Updated style.css (Accessible & SEO-Friendly Styling)*
+```css
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+
+h1, h2 {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    font-weight: bold;
+}
+
+button {
+    background-color: #2575fc;
+    color: white;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #6a11cb;
+}
+
+input {
+    padding: 12px;
+    width: 80%;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+footer {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+}
+```
+
+*📜 Updated script.js (SEO & Accessibility Enhancements)*
+```js
+function searchField() {
+    let searchInput = document.getElementById("searchInput").value.toLowerCase();
+    let outputDiv = document.getElementById("output");
+
+    outputDiv.innerHTML = `<p>Loading results...</p>`; // Simulated faster response
+
+    setTimeout(() => {
+        let results = {
+            "student": "Focus on learning new technologies and networking.",
+            "businessman": "Develop a strong brand and strategic marketing.",
+            "politician": "Engage in leadership, policy-making, and community outreach.",
+            "civil servant": "Work efficiently and uphold ethical governance."
+};
+
+        outputDiv.innerHTML = `<p>${results[searchInput] || "Try searching for another profession."}</p>`;
+}, 500);
+}
+```
+
+*📜 Updated script.js (Profile Enhancements)*
+```js
+function saveProfile() {
+    let name = document.getElementById("profileName").value;
+    let email = document.getElementById("profileEmail").value;
+    let career = document.getElementById("careerField").value;
+    let bio = document.getElementById("bio").value;
+    let profileImage = document.getElementById("profileImage").files[0];
+
+    if (!name ||!email) {
+        document.getElementById("profileMessage").innerText = "Please enter your name and email.";
+        return;
+}
+
+    let userProfile = { name, email, career, bio, profileImage};
+    localStorage.setItem("userProfile", JSON.stringify(userProfile));
+    document.getElementById("profileMessage").innerText = "Profile updated successfully!";
+}
+
+function saveCareer() {
+    let achievements = document.getElementById("achievements").value;
+    localStorage.setItem("careerProgress", achievements);
+    alert("Career progress saved!");
+}
+
+// Auto-load profile on page load
+window.onload = function() {
+    let userProfile = JSON.parse(localStorage.getItem("userProfile"));
+    let careerProgress = localStorage.getItem("careerProgress");
+
+    if (userProfile) {
+        document.getElementById("profileName").value = userProfile.name;
+        document.getElementById("profileEmail").value = userProfile.email;
+        document.getElementById("careerField").value = userProfile.career;
+        document.getElementById("bio").value = userProfile.bio;
+}
+
+    if (careerProgress) {
+        document.getElementById("achievements").value = careerProgress;
+}
+};
+```
+
+*📜 Updated script.js (Pinned Posts & Trending Topics)*
+```js
+function postDiscussion() {
+    let title = document.getElementById("postTitle").value;
+    let content = document.getElementById("postContent").value;
+
+    if (!title ||!content) {
+        document.getElementById("postMessage").innerText = "Please enter a title and content.";
+        return;
+}
+
+    let posts = JSON.parse(localStorage.getItem("forumPosts")) || [];
+    posts.push({ title, content, likes: 0, pinned: false});
+    localStorage.setItem("forumPosts", JSON.stringify(posts));
+
+    document.getElementById("postMessage").innerText = "Discussion posted!";
+    displayPosts();
+}
+
+// Display Posts with Pinned & Trending Features
+function displayPosts() {
+    let posts = JSON.parse(localStorage.getItem("forumPosts")) || [];
+    let postsList = document.getElementById("postsList");
+    let pinnedList = document.getElementById("pinnedPosts");
+
+    postsList.innerHTML = "";
+    pinnedList.innerHTML = "";
+
+    posts.forEach((post, index) => {
+        let postDiv = document.createElement("div");
+        postDiv.classList.add("post");
+        postDiv.innerHTML = `<h3>${post.title}</h3><p>${post.content}</p>
+                             <p>👍 ${post.likes} Likes <button onclick="likePost(${index})">Like</button>
+                             <button onclick="pinPost(${index})">📌 Pin</button></p>`;
+
+        if (post.pinned) {
+            pinnedList.appendChild(postDiv);
+} else {
+            postsList.appendChild(postDiv);
+}
+});
+}
+
+// Pin a Discussion
+function pinPost(index) {
+    let posts = JSON.parse(localStorage.getItem("forumPosts")) || [];
+    posts[index].pinned =!posts[index].pinned;
+    localStorage.setItem("forumPosts", JSON.stringify(posts));
+    displayPosts();
+}
+
+// Show Trending Discussions
+function showTrending() {
+    let posts = JSON.parse(localStorage.getItem("forumPosts")) || [];
+    let sortedPosts = posts.sort((a, b) => b.likes - a.likes);
+    localStorage.setItem("forumPosts", JSON.stringify(sortedPosts));
+    displayPosts();
+}
+
+// Like a Discussion
+function likePost(index) {
+    let posts = JSON.parse(localStorage.getItem("forumPosts")) || [];
+    posts[index].likes++;
+    localStorage.setItem("forumPosts", JSON.stringify(posts));
+    displayPosts();
+}
+
+// Load Posts Automatically
+window.onload = function() {
+    displayPosts();
+};
+```
+*📜 Updated script.js (Messaging Improvements)*
+```js
+// Send a Private Message with Read Receipt & Encryption
+function sendMessage() {
+    let recipient = document.getElementById("recipient").value;
+    let messageContent = document.getElementById("messageContent").value;
+
+    if (!recipient ||!messageContent) {
+        document.getElementById("messageStatus").innerText = "Please enter recipient and message.";
+        return;
+}
+
+    let encryptedMessage = btoa(messageContent); // Simple encryption example
+    let messages = JSON.parse(localStorage.getItem("messages")) || [];
+    messages.push({ recipient, encryptedMessage, read: false});
+    localStorage.setItem("messages", JSON.stringify(messages));
+
+    document.getElementById("messageStatus").innerText = "Message sent!";
+    loadMessages();
+}
+
+// Load Messages with Read Status
+function loadMessages() {
+    let currentUser = localStorage.getItem("userName") || "Guest";
+    let messages = JSON.parse(localStorage.getItem("messages")) || [];
+    let messagesList = document.getElementById("messagesList");
+    messagesList.innerHTML = "";
+
+    messages.forEach((msg, index) => {
+        if (msg.recipient === currentUser) {
+            let decryptedMessage = atob(msg.encryptedMessage);
+            let readStatus = msg.read? "✅ Read": "📩 Unread";
+
+            let messageDiv = document.createElement("div");
+            messageDiv.classList.add("message-box");
+            messageDiv.innerHTML = `<p><strong>From:</strong> Anonymous</p>
+                                    <p>${decryptedMessage}</p>
+                                    <p>${readStatus}</p>
+                                    <button onclick="markAsRead(${index})">Mark as Read</button>`;
+            messagesList.appendChild(messageDiv);
+}
+});
+}
+
+// Mark Messages as Read
+function markAsRead(index) {
+    let messages = JSON.parse(localStorage.getItem("messages")) || [];
+    messages[index].read = true;
+    localStorage.setItem("messages", JSON.stringify(messages));
+    loadMessages();
+}
+
+// Load Messages Automatically on Page Load
+window.onload = function() {
+    loadMessages();
+};
+```
+
+*📜 Updated script.js (Smarter AI Logic)*
+```js
+// Firebase Database for Chat History
+const database = firebase.database();
+
+// AI Response Logic with Memory
+function getAIResponse(message, userProfile) {
+    let responses = {
+        "student": [
+            "Focus on projects to showcase your skills.",
+            "Networking is essential for career growth.",
+            "Internships provide valuable hands-on experience."
+        ],
+        "business": [
+            "Branding and strategic marketing drive success.",
+            "Understanding financial management ensures longevity.",
+            "Customer engagement is key to business growth."
+        ],
+        "politician": [
+            "Building trust through public engagement is vital.",
+            "Policy strategies should reflect community needs.",
+            "Effective communication is a cornerstone of leadership."
+        ],
+        "civil servant": [
+            "Efficiency and ethical standards strengthen public service.",
+            "Continuous learning helps adapt to policy changes.",
+            "Creating sustainable programs benefits the community."
+        ]
+};
+
+    let category = userProfile?.careerField?.toLowerCase();
+    let responseOptions = responses[category] || ["I'm here to help! Ask me anything career-related."];
+
+    return responseOptions[Math.floor(Math.random() * responseOptions.length)];
+}
+
+// Sending Messages to AI
+function sendMessage() {
+    let userMessage = document.getElementById("userMessage").value;
+    if (!userMessage) return;
+
+    let userProfile = JSON.parse(localStorage.getItem("userProfile")) || {};
+    let aiResponse = getAIResponse(userMessage, userProfile);
+
+    document.getElementById("chatHistory").innerHTML += `<p><strong>You:</strong> ${userMessage}</p>`;
+    document.getElementById("chatHistory").innerHTML += `<p><strong>AI:</strong> ${aiResponse}</p>`;
+
+    // Store Chat in Firebase
+    database.ref("chatHistory").push({ userMessage, aiResponse});
+}
+
+// Load Chat History
+database.ref("chatHistory").on("value", (snapshot) => {
+    let chats = snapshot.val();
+    let chatHistoryDiv = document.getElementById("chatHistory");
+    chatHistoryDiv.innerHTML = "";
+
+    for (let key in chats) {
+        chatHistoryDiv.innerHTML += `<p><strong>You:</strong> ${chats[key].userMessage}</p>`;
+        chatHistoryDiv.innerHTML += `<p><strong>AI:</strong> ${chats[key].aiResponse}</p>`;
+}
+});
+```
+*📜 Updated script.js (Career Search Logic)*
+```js
+function searchCareer() {
+    let searchInput = document.getElementById("searchInput").value.toLowerCase();
+    let resultsDiv = document.getElementById("searchResults");
+
+    let careerAdvice = {
+        "student": [
+            "Focus on learning new technologies, networking, and gaining practical experience.",
+            "Engage in internships and build strong professional connections.",
+            "Stay curious and adaptable to emerging career trends."
+        ],
+        "businessman": [
+            "Develop a strong brand and marketing strategy.",
+            "Financial planning is crucial for long-term success.",
+            "Customer engagement and innovation drive business growth."
+        ],
+        "politician": [
+            "Effective leadership involves trust-building and policy knowledge.",
+            "Strategic communication enhances public engagement.",
+            "Stay informed about global and local political developments."
+        ],
+        "civil servant": [
+            "Work efficiently while upholding ethical governance.",
+            "Continuous learning helps navigate policy reforms.",
+            "Engage in projects that create sustainable change."
+        ]
+};
+
+    let adviceList = careerAdvice[searchInput] || ["No results found. Try another profession."];
+
+    resultsDiv.innerHTML = `<h3>Advice for ${searchInput.charAt(0).toUpperCase() + searchInput.slice(1)}</h3>`;
+    adviceList.forEach(advice => {
+        resultsDiv.innerHTML += `<p>✅ ${advice}</p>`;
+});
+}
+```
+*📜 Updated script.js (Expanded Career Search & Filtering)*
+```js
+function searchCareer() {
+    let searchInput = document.getElementById("searchInput").value.toLowerCase();
+    let resultsDiv = document.getElementById("searchResults");
+    let experienceFilter = document.getElementById("experienceLevel").value;
+
+    let careerAdvice = {
+        "student": {
+            beginner: ["Start learning foundational concepts.", "Participate in workshops."],
+            intermediate: ["Work on real-world projects.", "Network with industry professionals."],
+            expert: ["Consider leadership roles in student communities.", "Apply for research internships."]
+},
+        "businessman": {
+            beginner: ["Understand basic financial principles.", "Build a small brand presence."],
+            intermediate: ["Expand product offerings.", "Improve business operations and scalability."],
+            expert: ["Consider mergers and acquisitions.", "Lead in market innovation."]
+},
+        "politician": {
+            beginner: ["Study political history and ethics.", "Engage in community discussions."],
+            intermediate: ["Form policy strategies.", "Build strong public communication skills."],
+            expert: ["Run for office.", "Create lasting legislative impact."]
+},
+        "civil servant": {
+            beginner: ["Learn government processes.", "Understand public administration principles."],
+            intermediate: ["Take leadership roles in projects.", "Improve policy efficiency."],
+            expert: ["Drive reforms and strategic initiatives.", "Engage in policy-making at a high level."]
+}
+};
+
+    let selectedAdvice = careerAdvice[searchInput]?.[experienceFilter] || ["No results found. Try another profession or level."];
+
+    resultsDiv.innerHTML = `<h3>Advice for ${searchInput.charAt(0).toUpperCase() + searchInput.slice(1)}</h3>`;
+    selectedAdvice.forEach(advice => {
+        resultsDiv.innerHTML += `<p>✅ ${advice}</p>`;
+});
+}
+```
+*📜 Updated script.js (Career Goal Tracking & AI Suggestions)*
+```js
+function saveCareerGoals() {
+    let goals = document.getElementById("careerGoals").value;
+    localStorage.setItem("careerGoals", goals);
+    displayCareerSuggestions();
+}
+
+// AI-Driven Career Advice Based on Goals
+function displayCareerSuggestions() {
+    let careerField = localStorage.getItem("careerField");
+    let goals = localStorage.getItem("careerGoals") || "";
+    let suggestionsDiv = document.getElementById("goalSuggestions");
+
+    let suggestions = {
+        "student": ["Consider online certifications to boost skills.", "Join professional networking groups."],
+        "businessman": ["Optimize financial planning and brand growth.", "Strengthen digital marketing strategies."],
+        "politician": ["Engage in leadership development programs.", "Host community outreach initiatives."],
+        "civil servant": ["Focus on public service impact and policy efficiency.", "Develop expertise in governance reforms."]
+};
+
+    let careerAdvice = suggestions[careerField] || ["Set clear goals and track your progress for career success!"];
+
+    suggestionsDiv.innerHTML = `<h3>Recommended Actions for Your Field</h3>`;
+    careerAdvice.forEach(advice => {
+        suggestionsDiv.innerHTML += `<p>✅ ${advice}</p>`;
+});
+}
+
+// Load Career Goals Automatically
+window.onload = function() {
+    if (localStorage.getItem("careerGoals")) {
+        document.getElementById("careerGoals").value = localStorage.getItem("careerGoals");
+        displayCareerSuggestions();
+}
+};
+```
+
+
+*📜 Updated style.css (Enhanced UI & UX)*
+```css
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 20px;
+}
+
+h1, h2 {
+    font-size: 26px;
+    color: #333;
+    text-align: center;
+    font-weight: bold;
+}
+
+.search-box,.profile-box,.forum-box,.message-box {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 0px 10px gray;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+}
+
+.search-box:hover,.profile-box:hover,.forum-box:hover,.message-box:hover {
+    box-shadow: 0px 0px 15px #6a11cb;
+    transform: scale(1.02);
+}
+
+button {
+    background-color: #2575fc;
+    color: white;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #6a11cb;
+}
+
+input, textarea, select {
+    padding: 12px;
+    width: 90%;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+
+
+*📜 Updated script.js (Performance Optimization)*
+```js
+// Debounce function to prevent excessive search requests
+function debounce(func, delay) {
+    let timer;
+    return function() {
+        clearTimeout(timer);
+        timer = setTimeout(() => func.apply(this, arguments), delay);
+};
+}
+
+// Optimized Career Search Function
+function searchCareer() {
+    let searchInput = document.getElementById("searchInput").value.toLowerCase();
+    let resultsDiv = document.getElementById("searchResults");
+    let experienceFilter = document.getElementById("experienceLevel").value;
+
+    let careerAdvice = {
+        "student": {
+            beginner: ["Focus on fundamental skills.", "Engage in educational workshops."],
+            intermediate: ["Work on practical projects.", "Network with professionals."],
+            expert: ["Lead student initiatives.", "Apply for high-impact internships."]
+},
+        "businessman": {
+            beginner: ["Understand basic financial strategies.", "Build brand presence."],
+            intermediate: ["Expand business operations.", "Strengthen marketing efforts."],
+            expert: ["Consider investments and innovation.", "Lead in business growth strategies."]
+}
+};
+
+    resultsDiv.innerHTML = `<h3>Advice for ${searchInput.charAt(0).toUpperCase() + searchInput.slice(1)}</h3>`;
+
+    if (careerAdvice[searchInput]?.[experienceFilter]) {
+        careerAdvice[searchInput][experienceFilter].forEach(advice => {
+            resultsDiv.innerHTML += `<p>✅ ${advice}</p>`;
+});
+} else {
+        resultsDiv.innerHTML += `<p>No results found. Try another profession or level.</p>`;
+}
+}
+
+// Apply debounce to improve performance
+document.getElementById("searchInput").addEventListener("input", debounce(searchCareer, 500));
+```
+
+*📜 Updated careerGuidance.js (Expanded Professions & Smart Advice)*
+```js
+function searchCareer() {
+    let searchInput = document.getElementById("searchInput").value.toLowerCase();
+    let resultsDiv = document.getElementById("searchResults");
+    let experienceFilter = document.getElementById("experienceLevel").value;
+
+    let careerAdvice = {
+        "student": {
+            beginner: ["Learn foundational skills.", "Join student communities.", "Explore mentorship programs."],
+            intermediate: ["Build industry connections.", "Work on real-world projects.", "Consider internship programs."],
+            expert: ["Take leadership roles in research.", "Publish academic work.", "Pursue advanced certifications."]
+},
+        "businessman": {
+            beginner: ["Develop a simple business plan.", "Identify target markets.", "Learn financial basics."],
+            intermediate: ["Optimize branding strategies.", "Strengthen operational processes.", "Focus on customer engagement."],
+            expert: ["Expand globally.", "Invest in emerging markets.", "Lead industry innovation."]
+},
+        "doctor": {
+            beginner: ["Build a strong medical foundation.", "Engage in clinical rotations.", "Learn patient communication skills."],
+            intermediate: ["Gain specialized expertise.", "Network with healthcare professionals.", "Contribute to research studies."],
+            expert: ["Run medical initiatives.", "Lead healthcare policy changes.", "Mentor young professionals."]
+}
+};
+
+    let selectedAdvice = careerAdvice[searchInput]?.[experienceFilter] || ["No results found. Try another profession or level."];
+
+    resultsDiv.innerHTML = `<h3>Advice for ${searchInput.charAt(0).toUpperCase() + searchInput.slice(1)}</h3>`;
+    selectedAdvice.forEach(advice => {
+        resultsDiv.innerHTML += `<p>✅ ${advice}</p>`;
+});
+}
+
+*📜 Updated script.js (Smart Career Search System)*
+```js
+function searchCareer() {
+    let searchInput = document.getElementById("searchInput").value.toLowerCase();
+    let resultsDiv = document.getElementById("searchResults");
+    let experienceFilter = document.getElementById("experienceLevel").value;
+
+    let careerAdvice = {
+        "student": {
+            beginner: [
+                "Start learning foundational skills.",
+                "Engage in workshops and certifications.",
+                "Build strong networking connections."
+            ],
+            intermediate: [
+                "Work on industry projects and develop key skills.",
+                "Intern with established professionals in your field.",
+                "Consider leadership roles in student organizations."
+            ],
+            expert: [
+                "Publish academic work or research papers.",
+                "Mentor aspiring students in your expertise.",
+                "Advance toward high-level industry certifications."
+            ]
+},
+        "businessman": {
+            beginner: [
+                "Develop a strong business plan and financial strategy.",
+                "Identify target markets and brand positioning.",
+                "Learn entrepreneurial best practices."
+            ],
+            intermediate: [
+                "Expand business operations and optimize strategies.",
+                "Strengthen digital marketing and customer engagement.",
+                "Focus on financial scalability and risk management."
+            ],
+            expert: [
+                "Lead in market innovation strategies.",
+                "Explore business investments, mergers, and acquisitions.",
+                "Optimize financial management for long-term success."
+            ]
+},
+        "politician": {
+            beginner: [
+                "Study political ethics, policies, and governance principles.",
+                "Engage in community discussions and advocacy work.",
+                "Learn public speaking and political strategy fundamentals."
+            ],
+            intermediate: [
+                "Develop policy proposals and strategic governance solutions.",
+                "Improve communication and leadership presence.",
+                "Strengthen public engagement and trust-building efforts."
+            ],
+            expert: [
+                "Run for political office with a strategic campaign plan.",
+                "Create lasting policy impact through legislative work.",
+                "Lead impactful governance initiatives."
+            ]
+            
+            },
+        "civil servant": {
+            beginner: [
+                "Understand public administration principles.",
+                "Engage in government training and policy education.",
+                "Learn ethical and efficiency-driven service strategies."
+            ],
+            intermediate: [
+                "Take leadership roles in public sector initiatives.",
+                "Improve government process efficiency.",
+                "Engage in key policy reforms."
+            ],
+            expert: [
+                "Drive major legislative or administrative reforms.",
+                "Build sustainable government programs.",
+                "Lead large-scale public service transformation efforts."
+            ]
+}
+};
+
+    let selectedAdvice = careerAdvice[searchInput]?.[experienceFilter] || ["No results found. Try another profession or level."];
+
+    resultsDiv.innerHTML = `<h3>Career Insights for ${searchInput.charAt(0).toUpperCase() + searchInput.slice(1)}</h3>`;
+    selectedAdvice.forEach(advice => {
+        resultsDiv.innerHTML += `<p>✅ ${advice}</p>`;
+});
+}
+
+*📜 Updated script.js (Displaying Success Stories)*
+```js
+function searchSuccessStories() {
+    let searchField = document.getElementById("searchField").value.toLowerCase();
+    let resultsDiv = document.getElementById("successResults");
+
+    let storiesDatabase = {
+        "student": [
+            "John, a university student, built an AI-powered study tool that helped thousands of students improve their learning efficiency.",
+            "Maria, a college researcher, published a groundbreaking paper on climate change, influencing global discussions."
+        ],
+        "businessman": [
+            "David founded a small online shop and scaled it into an international e-commerce business through innovative marketing.",
+            "Sophia revolutionized the restaurant industry by introducing AI-driven customer service strategies."
+        ],
+        "politician": [
+            "Michael launched a youth leadership movement that empowered thousands to get involved in policy-making.",
+            "Lucy successfully passed legislation promoting sustainable energy and environmental protection."
+        ],
+        "civil servant": [
+            "James modernized a local government office by implementing new digital infrastructure, improving efficiency.",
+            "Sarah led a nationwide campaign for public healthcare reforms, creating lasting policy impact."
+        ]
+};
+
+    let selectedStories = storiesDatabase[searchField] || ["No success stories found for this profession. Try another search!"];
+
+    resultsDiv.innerHTML = `<h3>Success Stories for ${searchField.charAt(0).toUpperCase() + searchField.slice(1)}</h3>`;
+    selectedStories.forEach(story => {
+        resultsDiv.innerHTML += `<p>🌟 ${story}</p>`;
+});
+}
+
+*📜 Updated script.js (Goal Tracking & AI Insights)*
+```js
+function saveGoals() {
+    let shortTerm = document.getElementById("shortTermGoals").value;
+    let longTerm = document.getElementById("longTermGoals").value;
+    localStorage.setItem("shortTermGoals", shortTerm);
+    localStorage.setItem("longTermGoals", longTerm);
+    displayGoalSuggestions();
+}
+
+// AI-Driven Career Guidance Based on Goals
+function displayGoalSuggestions() {
+    let careerField = localStorage.getItem("careerField");
+    let suggestionsDiv = document.getElementById("goalSuggestions");
+
+    let actionSteps = {
+        "student": ["Enroll in specialized courses.", "Apply for industry-focused internships."],
+        "businessman": ["Optimize financial growth strategies.", "Expand branding across markets."],
+        "politician": ["Develop strategic communication skills.", "Strengthen community engagement efforts."],
+        "civil servant": ["Enhance policy efficiency.", "Contribute to governance reforms."]
+};
+
+    let careerAdvice = actionSteps[careerField] || ["Define clear goals and track your progress for long-term success!"];
+
+    suggestionsDiv.innerHTML = `<h3>Recommended Actions for Your Career</h3>`;
+    careerAdvice.forEach(advice => {
+        suggestionsDiv.innerHTML += `<p>✅ ${advice}</p>`;
+});
+}
+
+// Auto-load Career Goals on Page Refresh
+window.onload = function() {
+    if (localStorage.getItem("shortTermGoals") || localStorage.getItem("longTermGoals")) {
+        document.getElementById("shortTermGoals").value = localStorage.getItem("shortTermGoals");
+        document.getElementById("longTermGoals").value = localStorage.getItem("longTermGoals");
+        displayGoalSuggestions();
+}
+};
+
+*📜 Updated script.js (Expert Insights System)*
+```js
+function searchExperts() {
+    let searchField = document.getElementById("searchField").value.toLowerCase();
+    let resultsDiv = document.getElementById("expertResults");
+
+    let expertDatabase = {
+        "student": [
+            "Dr. Emily, AI researcher: 'Stay curious and publish your findings to shape future technologies.'",
+            "Prof. Mark, education specialist: 'Online courses and networking are key in modern learning.'"
+        ],
+        "businessman": [
+            "Lisa, startup founder: 'Scaling a business requires innovation and strategic partnerships.'",
+            "James, investment expert: 'Financial management is crucial for long-term business success.'"
+        ],
+        "politician": [
+            "Sen. Robert, policy expert: 'Public engagement and ethical leadership drive sustainable change.'",
+            "Anna, campaign strategist: 'Effective messaging and trust-building win elections.'"
+        ],
+        "civil servant": [
+            "Dr. Thomas, governance specialist: 'Efficiency and transparency strengthen public service institutions.'",
+            "Maria, policy analyst: 'Policy reform should balance economic growth and social welfare.'"
+        ]
+};
+
+    let selectedExperts = expertDatabase[searchField] || ["No expert insights found for this profession. Try another search!"];
+
+    resultsDiv.innerHTML = `<h3>Expert Insights for ${searchField.charAt(0).toUpperCase() + searchField.slice(1)}</h3>`;
+    selectedExperts.forEach(expert => {
+        resultsDiv.innerHTML += `<p>🌟 ${expert}</p>`;
+});
+}
+
+
+
+</style>
+<body>
+    <header>
+        <h1>Welcome to the Global Knowledge Hub</h1>
+        <p>Find advice, mentorship, and examples tailored to your profession!</p>
+    </header>
+
+    <section class="search-box">
+        <h2>Search Your Field</h2>
+        <select id="fieldSelect">
+            <option value="student">Student</option>
+            <option value="business">Businessman</option>
+            <option value="politician">Politician</option>
+            <option value="civilServant">Civil Servant</option>
+        </select>
+        <button onclick="searchField()">Search</button>
+    </section>
+
+    <section id="result">
+        <h2>Results:</h2>
+        <p id="output"></p>
+    </section>
+
+    <script src="script.js"></script>
+    
+    <!-- Registration Form -->
+    <section class="auth-box">
+        <h2>Sign Up</h2>
+        <input type="text" id="newUsername" placeholder="Choose a username">
+        <input type="password" id="newPassword" placeholder="Choose a password">
+        <button onclick="registerUser()">Register</button>
+        <p id="registerMessage"></p>
+    </section>
+
+    <!-- Login Form -->
+    <section class="auth-box">
+        <h2>Sign In</h2>
+        <input type="text" id="username" placeholder="Enter username">
+        <input type="password" id="password" placeholder="Enter password">
+        <button onclick="loginUser()">Login</button>
+        <p id="loginMessage"></p>
+    </section>
+
+    <!-- Welcome Message -->
+    <section id="welcome" style="display: none;">
+        <h2>Welcome, <span id="userGreeting"></span>!</h2>
+        <p>Explore personalized content based on your career field.</p>
+    </section>
+
+    <script src="script.js"></script>
+    
+    <header>
+        <h1>Your Profile</h1>
+        <p>Manage your preferences and get personalized advice.</p>
+    </header>
+
+    <section class="profile-box">
+        <h2>Update Profile</h2>
+        <input type="text" id="profileName" placeholder="Enter your name">
+        <select id="careerField">
+            <option value="student">Student</option>
+            <option value="business">Businessman</option>
+            <option value="politician">Politician</option>
+            <option value="civilServant">Civil Servant</option>
+        </select>
+        <button onclick="saveProfile()">Save Profile</button>
+        <p id="profileMessage"></p>
+    </section>
+
+    <section id="personalizedAdvice" style="display: none;">
+        <h2>Career Advice for You</h2>
+        <p id="adviceText"></p>
+    </section>
+
+    <script src="script.js"></script>
+    
+       <header>
+        <h1>Community Forum</h1>
+        <p>Engage with others, ask questions, and share knowledge!</p>
+    </header>
+
+    <section class="forum-box">
+        <h2>Start a Discussion</h2>
+        <input type="text" id="postTitle" placeholder="Enter discussion title">
+        <textarea id="postContent" placeholder="Write your question or advice..."></textarea>
+        <button onclick="postDiscussion()">Post</button>
+        <p id="postMessage"></p>
+    </section>
+
+    <section id="forumPosts">
+        <h2>Recent Discussions</h2>
+        <div id="postsList"></div>
+    </section>
+
+    <script src="script.js"></script>
+    
+    <section class="dashboard-box">
+        <h2>Profile Settings</h2>
+        <input type="text" id="profileName" placeholder="Enter your name">
+        <select id="careerField">
+            <option value="student">Student</option>
+            <option value="business">Businessman</option>
+            <option value="politician">Politician</option>
+            <option value="civilServant">Civil Servant</option>
+        </select>
+    <header>
+        <h1>Private Messages</h1>
+        <p>Communicate directly with other users.</p>
+    </header>
+<button onclick="saveProfile()">Save Profile</button>
+        <p id="profileMessage"></p>
+    <section class="message-box">
+        <h2>Send a Message</h2>
+        <input type="text" id="recipient" placeholder="Recipient Username">
+        <textarea id="messageContent" placeholder="Write your message..."></textarea>
+        <button onclick="sendMessage()">Send</button>
+        <p id="messageStatus"></p>
+    </section>
+    </section>
+    <section id="inbox">
+        <h2>Your Inbox</h2>
+        <div id="messagesList"></div>
+    </section>
+
+    <script src="script.js"></script>
+    
+    <header>
+        <h1>User Authentication</h1>
+        <p>Sign up or log in to access your account.</p>
+    </header>
+
+    <!-- Registration -->
+    <section class="auth-box">
+        <h2>Sign Up</h2>
+        <input type="email" id="registerEmail" placeholder="Enter email">
+        <input type="password" id="registerPassword" placeholder="Enter password">
+        <button onclick="registerUser()">Register</button>
+        <p id="registerMessage"></p>
+    </section>
+
+    <!-- Login -->
+    <section class="auth-box">
+        <h2>Log In</h2>
+        <input type="email" id="loginEmail" placeholder="Enter email">
+        <input type="password" id="loginPassword" placeholder="Enter password">
+        <button onclick="loginUser()">Login</button>
+        <p id="loginMessage"></p>
+    </section>
+
+    <button onclick="logoutUser()">Log Out</button>
+
+    <script src="script.js"></script>
+   
+    
+<section class="dashboard-box">
+    <h2>Notifications</h2>
+    <button onclick="requestNotificationPermission()">Enable Notifications</button>
+    <div id="notificationList"></div>
+    
+    
+    <section class="chat-box">
+        <h2>Ask Your Question</h2>
+        <input type="text" id="userMessage" placeholder="Type your career question...">
+        <button onclick="sendMessage()">Send</button>
+        <div id="chatHistory"></div>
+    </section>
+
+    <script src="script.js"></script>
+</section>
+    
+<section class="search-box">
+    <h2>Search Your Field</h2>
+    <input type="text" id="searchInput" placeholder="Enter your profession">
+    <button onclick="searchField()">Search</button>
+</section>
+
+<section id="result">
+    <h2>Results:</h2>
+    <div id="output"></div>
+    
+
+<section class="auth-box">
+    <h2>Sign Up</h2>
+    <input type="email" id="registerEmail" placeholder="Enter email">
+    <input type="password" id="registerPassword" placeholder="Enter password">
+    <button onclick="registerUser()">Register</button>
+    <p id="registerMessage"></p>
+</section>
+
+<section class="auth-box">
+    <h2>Log In</h2>
+    <input type="email" id="loginEmail" placeholder="Enter email">
+    <input type="password" id="loginPassword" placeholder="Enter password">
+    <button onclick="loginUser()">Login</button>
+    <p id="loginMessage"></p>
+    <button onclick="resetPassword()">Forgot Password?</button>
+</section>
+
+<button onclick="logoutUser()">Log Out</button>
+
+    <input type="file" id="profileImage" accept="image/*">
+    <textarea id="bio" placeholder="Tell us about yourself..."></textarea>
+    <button onclick="saveProfile()">Save Profile</button>
+    <p id="profileMessage"></p>
+</section>
+    
+
+<section class="profile-box">
+    <h2>Update Profile</h2>
+    <input type="text" id="profileName" placeholder="Enter your name">
+    <input type="email" id="profileEmail" placeholder="Enter your email">
+    <select id="careerField">
+        <option value="student">Student</option>
+        <option value="business">Businessman</option>
+        <option value="politician">Politician</option>
+        <option value="civilServant">Civil Servant</option>
+    </select>
+
+</section>
+
+
+
+
+
+<section id="careerTracking">
+    <h2>Career Progression</h2>
+    <textarea id="achievements" placeholder="List your achievements and skills..."></textarea>
+    <button onclick="saveCareer()">Save Progress</button>
+    
+            
+<section id="forumPosts">
+    <h2>Recent Discussions</h2>
+    <button onclick="showTrending()">🔥 Trending Topics</button>
+    <div id="pinnedPosts"></div>
+    <div id="postsList"></div>
+</section>
+
+    <section class="message-box">
+    <h2>Send a Message</h2>
+    <input type="text" id="recipient" placeholder="Recipient Username">
+    <textarea id="messageContent" placeholder="Write your message..."></textarea>
+    <button onclick="sendMessage()">Send</button>
+    <p id="messageStatus"></p>
+</section>
+
+    <section id="inbox">
+    <h2>Your Inbox</h2>
+    <button onclick="loadMessages()">🔄 Refresh Inbox</button>
+    <div id="messagesList"></div>
+</section>
+    <section class="chat-box">
+    <h2>Career AI Assistant</h2>
+    <input type="text" id="userMessage" placeholder="Type your question...">
+    <button onclick="sendMessage()">Send</button>
+    <button onclick="startVoiceRecognition()">🎙 Speak</button>
+    <div id="chatHistory"></div>
+</section>
+    
+    <section class="search-box">
+    <h2>Find Advice for Your Field</h2>
+    <input type="text" id="searchInput" placeholder="Enter your profession (e.g., Student, Businessman)">
+    <button onclick="searchCareer()">Search</button>
+    <div id="searchResults"></div>
+</section> 
+   
+<section class="search-box">
+    <h2>Find Advice for Your Field</h2>
+    <input type="text" id="searchInput" placeholder="Enter your profession (e.g., Student, Businessman)">
+    <select id="experienceLevel">
+        <option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="expert">Expert</option>
+    </select>
+    <button onclick="searchCareer()">Search</button>
+    <div id="searchResults"></div>
+</section>
+    
+<section class="career-progress">
+    <h2>Track Your Career Progress</h2>
+    <textarea id="careerGoals" placeholder="Write down your career goals..."></textarea>
+    <button onclick="saveCareerGoals()">Save Goals</button>
+    <div id="goalSuggestions"></div>
+</section>
+    
+    <section class="success-box">
+    <h2>Real-World Success Stories</h2>
+    <input type="text" id="searchField" placeholder="Enter your profession (e.g., Student, Businessman)">
+    <button onclick="searchSuccessStories()">Search</button>
+    <div id="successResults"></div>
+</section>
+
+<section class="goal-tracking-box">
+    <h2>Set Your Career Goals</h2>
+    <textarea id="shortTermGoals" placeholder="Write your short-term career goals..."></textarea>
+    <textarea id="longTermGoals" placeholder="Write your long-term career vision..."></textarea>
+    <button onclick="saveGoals()">Save Goals</button>
+    <div id="goalSuggestions"></div>
+</section>
+
+
+<section class="expert-box">
+    <h2>Learn from Industry Experts</h2>
+    <input type="text" id="searchField" placeholder="Enter your profession (e.g., Student, Businessman)">
+    <button onclick="searchExperts()">Search Experts</button>
+    <div id="expertResults"></div>
+</section>
+
+
+
+
+
+
+    
+    
+    <footer>
+        <p>&copy; 2025 Global Knowledge Hub. All rights reserved.</p>
+        <a href="#" aria-label="Privacy Policy">Privacy Policy</a> |
+        <a href="#" aria-label="Terms of Service">Terms of Service</a>
+            
+    </footer>
+
+    <script src="script.js"></script>
+</section>
+    
+    
+</body>
+</html>
+
+    
+    
+    
+    
+    
+    
+ 
+
+
+
+
