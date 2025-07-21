@@ -1,0 +1,171 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    padding: 20px;
+    margin: 0; /* Ensure no default body margin */
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.search-box,
+.auth-box,
+.profile-box,
+.forum-box,
+.message-box,
+#inbox,
+.dashboard-box,
+.chat-box {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Lighter shadow for modern look */
+    max-width: 600px; /* Consistent max width for content boxes */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+    padding: 10px;
+    width: calc(100% - 20px); /* Adjust width for padding */
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box; /* Include padding in element's total width and height */
+    font-size: 16px;
+}
+
+textarea {
+    resize: vertical; /* Allow vertical resizing for textareas */
+    min-height: 80px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+    margin-top: 10px; /* Space above buttons */
+}
+
+button:hover {
+    background-color: #555;
+}
+
+#output,
+#personalizedAdvice {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #e9ecef; /* Lighter background for output areas */
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    text-align: left; /* Align text within output divs */
+}
+
+#output {
+    display: none; /* Hidden by default for search results */
+}
+
+/* Forum Specific Styling */
+#forumPosts {
+    margin-top: 20px;
+    padding: 0; /* Remove padding here as posts have their own */
+    background-color: transparent; /* Transparent background as posts are styled individually */
+    box-shadow: none; /* Remove shadow here */
+}
+
+.post {
+    padding: 15px;
+    margin: 10px 0;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.05);
+    text-align: left;
+}
+
+.comment-box {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #e2e6ea; /* Slightly darker than main output, lighter than post */
+    border-radius: 6px;
+    box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.1); /* Inner shadow for comments */
+}
+
+.reply-box {
+    margin-left: 20px;
+    padding: 8px;
+    background-color: #d1d5db; /* Even darker for replies */
+    border-radius: 6px;
+    box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.1);
+    margin-top: 5px; /* Space between replies */
+}
+
+/* Like Button Styling */
+.like-box {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Align to the right */
+}
+
+.like-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.like-btn:hover {
+    background-color: #0056b3;
+}
+
+.like-count {
+    margin-left: 10px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Chatbot Specific Styling */
+.chat-box #chatHistory {
+    border: 1px solid #ccc;
+    height: 200px;
+    overflow-y: scroll;
+    padding: 10px;
+    text-align: left;
+    background-color: #f8f9fa; /* Light background for chat history */
+    border-radius: 5px;
+}
+
+.chat-box #chatHistory p {
+    margin: 5px 0;
+    line-height: 1.4;
+}
+
+.notification {
+    background-color: #ffeeba; /* Light yellow for notifications */
+    border: 1px solid #ffc107;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    text-align: left;
+}
+
+#welcome {
+    margin-top: 10px;
+    font-size: 1.1em;
+}
