@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Knowledge Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Global Knowledge Hub</h1>
+        <p>Your one-stop source for professional insights.</p>
+        <div id="welcome" style="display:none;">
+            Welcome, <span id="userGreeting"></span>! <button onclick="logoutUser()">Logout</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="search-box">
+            <h2>Find Information</h2>
+            <input type="text" id="searchInput" placeholder="Search by profession (e.g., student, politician)">
+            <button onclick="searchField()">Search</button>
+            <div id="output"></div>
+        </section>
+
+        <section class="auth-box">
+            <h2>Register</h2>
+            <input type="email" id="registerEmail" placeholder="Email">
+            <input type="password" id="registerPassword" placeholder="Password">
+            <button onclick="registerUser()">Register</button>
+            <p id="registerMessage"></p>
+
+            <h2>Login</h2>
+            <input type="email" id="loginEmail" placeholder="Email">
+            <input type="password" id="loginPassword" placeholder="Password">
+            <button onclick="loginUser()">Login</button>
+            <p id="loginMessage"></p>
+        </section>
+
+        <section class="profile-box">
+            <h2>Your Profile</h2>
+            <input type="text" id="profileName" placeholder="Your Name">
+            <select id="careerField">
+                <option value="">Select your profession</option>
+                <option value="student">Student</option>
+                <option value="business">Businessman</option>
+                <option value="politician">Politician</option>
+                <option value="civilServant">Civil Servant</option>
+            </select>
+            <button onclick="saveProfile()">Save Profile</button>
+            <p id="profileMessage"></p>
+
+            <div id="personalizedAdvice">
+                <h3>Personalized Advice:</h3>
+                <p id="adviceText"></p>
+            </div>
+        </section>
+
+        <section class="forum-box">
+            <h2>Discussion Forum</h2>
+            <input type="text" id="postTitle" placeholder="Discussion Title">
+            <textarea id="postContent" placeholder="Your thoughts..."></textarea>
+            <button onclick="postDiscussion()">Post Discussion</button>
+            <p id="postMessage"></p>
+            <div id="forumPosts">
+                <h3>Recent Discussions</h3>
+                <div id="postsList"></div>
+            </div>
+        </section>
+
+        <section class="message-box">
+            <h2>Send Private Message</h2>
+            <input type="text" id="recipient" placeholder="Recipient Username/Email">
+            <textarea id="messageContent" placeholder="Your message..."></textarea>
+            <button onclick="sendMessage()">Send Message</button>
+            <p id="messageStatus"></p>
+        </section>
+
+        <section id="inbox">
+            <h2>Inbox</h2>
+            <div id="messagesList"></div>
+        </section>
+
+        <section class="dashboard-box">
+            <h2>Dashboard</h2>
+            <p>Total Posts: <span id="postCount">0</span></p>
+            <p>Total Likes: <span id="likeCount">0</span></p>
+            <p>Total Messages Sent: <span id="messageCount">0</span></p>
+            <h3>Notifications</h3>
+            <div id="notificationList"></div>
+        </section>
+
+        <section class="chat-box">
+            <h2>AI Assistant</h2>
+            <div id="chatHistory" style="border: 1px solid #ccc; height: 200px; overflow-y: scroll; padding: 10px; text-align: left;"></div>
+            <input type="text" id="userMessage" placeholder="Ask the AI a question...">
+            <button onclick="sendMessage()">Send to AI</button>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
